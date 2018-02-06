@@ -1,42 +1,29 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.5)
 project(update_version)
 
 set(CMAKE_CXX_STANDARD 11)
 
 include_directories(
+    ./libs/acow_cpp_goodies
     ./libs/CoreFile
     ./libs/CoreFS
     ./libs/CoreString
     ./libs/CoreAssert
 )
 
+add_subdirectory(libs/CoreAssert)
+add_subdirectory(libs/CoreFile)
+add_subdirectory(libs/CoreFS)
+add_subdirectory(libs/CoreString)
+
 add_executable(update_version
     ./src/update_version.cpp
-
-
-    ./libs/CoreFile/CoreFile/CoreFile.h
-    ./libs/CoreFile/CoreFile/include/Config.h
-    ./libs/CoreFile/CoreFile/include/CoreFile.h
-    ./libs/CoreFile/CoreFile/include/CoreFile_Utils.h
-
-    ./libs/CoreFS/CoreFS/CoreFS.h
-    ./libs/CoreFS/CoreFS/include/CoreFS.h
-    ./libs/CoreFS/CoreFS/include/CoreFS_Utils.h
-    ./libs/CoreFS/CoreFS/src/Macros.h
-
-
-    ./libs/CoreString/CoreString/CoreString.h
-    ./libs/CoreString/CoreString/include/CoreString.h
-    ./libs/CoreString/CoreString/include/CoreString_Utils.h
-
-    ./libs/CoreFile/CoreFile/src/CoreFile.cpp
-    ./libs/CoreFS/CoreFS/src/CoreFS.cpp
-    ./libs/CoreFS/CoreFS/src/CoreFS_Win32.cpp
-
-    ./libs/CoreString/CoreString/src/CoreString.cpp
-    ./libs/CoreFS/CoreFS/src/CoreFS_Unix.cpp
-
-    ./libs/CoreAssert/CoreAssert/src/private/PrivateHelpers.cpp
 )
+
+target_link_libraries (update_version LINK_PUBLIC CoreFile)
+target_link_libraries (update_version LINK_PUBLIC CoreFS)
+target_link_libraries (update_version LINK_PUBLIC CoreString)
+target_link_libraries (update_version LINK_PUBLIC CoreAssert)
+
 
 INSTALL(TARGETS update_version RUNTIME DESTINATION /usr/local/bin)
