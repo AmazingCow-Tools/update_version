@@ -10,3 +10,6 @@
 [submodule "libs/CoreAssert"]
 	path = libs/CoreAssert
 	url = https://github.com/AmazingCow-Libs/CoreAssert
+[submodule "libs/acow_cpp_goodies"]
+	path = libs/acow_cpp_goodies
+	url = https://github.com/AmazingCow-Libs/acow_cpp_goodies
